@@ -1,9 +1,6 @@
 package com.app.samuraisenso.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -19,6 +16,7 @@ import java.util.List;
 @Setter
 public class Character implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private LocalDate birthday;
@@ -29,11 +27,17 @@ public class Character implements Serializable {
     @JoinColumn
     private List<Weapon> weapon;
 
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn
-    private List<Ability> abilities; /*un personaje tiene muchas habilidades?puede no tener?*/
+    private List<Ability> abilities;
 
-    /*Escuela*/
-    /*Clan*/
-    /*Lugar de muerte: ciudad*/
+    @ManyToOne
+    private School school;
+
+    @ManyToOne
+    private City deathPlace;
+
+    @ManyToOne
+    private Clan clan;
+
 }

@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
 
 @Entity
 @Data
+@Table(name = "character_table")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Character implements Serializable {
@@ -49,5 +51,6 @@ public class Character implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "clan_id")
     private Clan clan;
+
 
 }

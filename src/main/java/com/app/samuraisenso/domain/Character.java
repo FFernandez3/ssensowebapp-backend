@@ -12,32 +12,42 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Character implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private LocalDate birthday;
+
     private LocalDate deathDate;
+
     private String image;
 
-    @OneToMany()
-    @JoinColumn
+    @OneToMany
     private List<Weapon> weapon;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn
+    @ManyToMany
+    @JoinTable(
+            name = "character_ability", // Nombre de la tabla de unión
+            joinColumns = @JoinColumn(name = "character_id"), // Clave externa de la entidad Character
+            inverseJoinColumns = @JoinColumn(name = "ability_id") // Clave externa de la entidad Ability
+    )
     private List<Ability> abilities;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "school_id")
     private School school;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id")
     private City deathPlace;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false, name = "clan_id")
     private Clan clan;
 
 }

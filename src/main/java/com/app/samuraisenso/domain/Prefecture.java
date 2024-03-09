@@ -8,17 +8,20 @@ import java.util.List;
 
 @Entity
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Prefecture implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String image;
 
-    @ManyToMany(mappedBy = "borderingPrefectures", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "borderingPrefectures")
     private List<Prefecture> borderingPrefectures;
 
     @OneToOne

@@ -21,9 +21,17 @@ public class Prefecture implements Serializable {
     @Column(nullable = false)
     private String image;
 
-    @ManyToMany(mappedBy = "borderingPrefectures")
+    @ManyToMany
+    @JoinTable(
+            name = "prefecture_border",
+            joinColumns = @JoinColumn(name = "prefecture_id"),
+            inverseJoinColumns = @JoinColumn(name = "bordering_prefecture_id")
+    )
     private List<Prefecture> borderingPrefectures;
 
-    @OneToOne
+    @ManyToMany(mappedBy = "borderingPrefectures")
+    private List<Prefecture> prefecturesBordering;
+
+    @OneToOne(fetch = FetchType.LAZY)
     private Character ruler;
 }

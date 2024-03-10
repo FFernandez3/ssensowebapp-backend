@@ -41,7 +41,7 @@ public class Character implements Serializable {
     private List<Ability> abilities;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "school_id")
+    @JoinColumn(name = "school_id", nullable = false)
     private School school;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -49,7 +49,7 @@ public class Character implements Serializable {
     private City deathPlace;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false, name = "clan_id")
+    @JoinColumn(name = "clan_id", nullable = false)
     private Clan clan;
 
 

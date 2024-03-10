@@ -6,8 +6,6 @@ import lombok.*;
 import java.io.Serializable;
 @Entity
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class City implements Serializable {

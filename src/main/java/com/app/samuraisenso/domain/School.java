@@ -24,6 +24,6 @@ public class School implements Serializable {
     @Column(nullable = false)
     private String specialAttack;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Character master;
 }

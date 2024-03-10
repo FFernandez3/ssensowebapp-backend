@@ -4,21 +4,22 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Weapon implements Serializable {
+public class Clan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private boolean is_personalized;
-    @Column(nullable = false)
-    private double price;
-    @Column(nullable = false)
-    private String description;
+
+    private String logo;
+
+    @OneToMany(mappedBy = "clan")
+    private List<Character> notableMembers;
 }

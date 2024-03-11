@@ -4,16 +4,19 @@ import com.app.samuraisenso.domain.Ability;
 import com.app.samuraisenso.repositories.AbilityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/ability")
 public class AbilityController {
-    private AbilityRepository repositorio;
+    private final AbilityRepository repositorio;
 
-    @GetMapping("/api/createAbilities")
+    @PostMapping("/create")
     public void createAbilities(){
         Ability ability1 = new Ability(1L,"Hiten Mitsurugi", "Tecnica de la escuela de Kenshin Himura", "Battou");
         Ability ability2 = new Ability(2L,"Kodachi Nito Ryuu", "Tecnica de la escuela de Aoshi Shinomori", "Kodachi");
@@ -24,7 +27,7 @@ public class AbilityController {
         repositorio.save(ability3);
     }
 
-    @GetMapping("/api/abilities")
+    @GetMapping("/all")
     public List<Ability> getAbilities (){
         return repositorio.findAll();
     }

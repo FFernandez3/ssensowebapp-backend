@@ -4,21 +4,17 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Weapon implements Serializable {
+public class City implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private boolean is_personalized;
-    @Column(nullable = false)
-    private double price;
-    @Column(nullable = false)
-    private String description;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prefecture_id")
+    private Prefecture prefecture;
 }

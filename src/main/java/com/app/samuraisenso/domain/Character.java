@@ -14,26 +14,43 @@ import java.util.List;
 @Table(name = "character_table")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Character implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
-    private Date birthday;
-    private Date deathDate;
+
+    @Column(nullable = false)
+    private LocalDate birthday;
+
+    private LocalDate deathDate;
+
     private String image;
 
     @OneToMany
-    //@JoinColumn
-    private List<Weapon> weapons;
+    private List<Weapon> weapon;
 
-    @OneToMany
-    //@JoinColumn
-    private List<Ability> abilities; /*un personaje tiene muchas habilidades?puede no tener?*/
+    @ManyToMany
+    @JoinTable(
+            name = "character_ability", // Nombre de la tabla de unión
+            joinColumns = @JoinColumn(name = "character_id"), // Clave externa de la entidad Character
+            inverseJoinColumns = @JoinColumn(name = "ability_id") // Clave externa de la entidad Ability
+    )
+    private List<Ability> abilities;
 
-    /*Escuela*/
-    /*Clan*/
-    /*Lugar de muerte: ciudad*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "school_id", nullable = false)
+    private School school;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id")
+    private City deathPlace;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "clan_id", nullable = false)
+    private Clan clan;
+
+
 }

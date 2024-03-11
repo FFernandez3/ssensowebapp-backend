@@ -9,16 +9,21 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Weapon implements Serializable {
+public class School implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="school_id")
     private Long id;
+
     @Column(nullable = false)
     private String name;
+
     @Column(nullable = false)
-    private boolean is_personalized;
+    private String technique;
+
     @Column(nullable = false)
-    private double price;
-    @Column(nullable = false)
-    private String description;
+    private String specialAttack;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Character master;
 }

@@ -4,16 +4,15 @@ import com.app.samuraisenso.domain.Ability;
 import com.app.samuraisenso.domain.AbilityType;
 import com.app.samuraisenso.repositories.AbilityRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/ability")
+@RequestMapping("/api/ability")
 public class AbilityController {
     private final AbilityRepository repositorio;
 
@@ -38,8 +37,28 @@ public class AbilityController {
 
     }
 
-    @GetMapping("/all")
+    @GetMapping("/getAll")
     public List<Ability> getAbilities (){
         return repositorio.findAll();
+    }
+
+    @GetMapping("/getBy/{id}")
+    public ResponseEntity<Ability> getAbilityById(@PathVariable Long id){
+        Optional<Ability> opt = repositorio.findById(id);
+
+        if (opt.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            return ResponseEntity.ok(opt.get());
+        }
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<Ability> saveAbility (@RequestBody Ability ability){
+        if (ability.getId() != null) {
+            return ResponseEntity.badRequest().build();
+        }
+        repositorio.save(ability);
+        return ResponseEntity.ok(ability);
     }
 }

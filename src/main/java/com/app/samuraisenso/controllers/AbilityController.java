@@ -26,7 +26,7 @@ public class AbilityController {
             repositorio.save(ability1);
             repositorio.save(ability2);
             repositorio.save(ability3);
-            System.out.println("entro al create");
+            //System.out.println("entro al create");
             return ("habilidades creadas");
 
         }

@@ -1,5 +1,6 @@
 package com.app.samuraisenso.domain;
 
+import com.app.samuraisenso.DTOs.ClanDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,4 +23,10 @@ public class Clan implements Serializable {
 
     @OneToMany(mappedBy = "clan")
     private List<Character> notableMembers;
+
+    public Clan(ClanDTO clandto){
+        this.setLogo(clandto.getLogo());
+        this.setName(clandto.getName());
+        this.setNotableMembers(clandto.getNotableMembers());
+    }
 }

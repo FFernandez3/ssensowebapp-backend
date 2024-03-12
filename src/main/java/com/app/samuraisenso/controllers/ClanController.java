@@ -17,9 +17,9 @@ public class ClanController {
     private ClanService clanService;
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody Clan c) {
+    public ResponseEntity<?> save(@RequestBody ClanDTO cDto) {
         try{
-            return ResponseEntity.status(HttpStatus.OK).body(clanService.save(c));
+            return ResponseEntity.status(HttpStatus.OK).body(clanService.save(cDto));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. No se pudo agregar el clan.\"}");
         }

@@ -16,8 +16,9 @@ public class ClanService {
     @Autowired
     private ClanRepository clanRepository;
 
-    public Clan save(Clan c) throws Exception {
+    public Clan save(ClanDTO cDto) throws Exception {
         try{
+            Clan c = new Clan(cDto);
             return clanRepository.save(c);
         }catch (Exception e){
             throw new Exception(e.getMessage());

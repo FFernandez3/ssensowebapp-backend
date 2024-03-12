@@ -54,7 +54,7 @@ public class AbilityController {
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Ability> saveAbility (@RequestBody AbilityRequestDTO abilityDto){
         //if (ability.getId() != null) {
         //    return ResponseEntity.badRequest().build();

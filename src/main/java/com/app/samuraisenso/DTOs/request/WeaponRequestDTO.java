@@ -1,4 +1,4 @@
-package com.app.samuraisenso.DTOs;
+package com.app.samuraisenso.DTOs.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

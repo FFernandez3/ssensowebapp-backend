@@ -1,4 +1,4 @@
-package com.app.samuraisenso.DTOs;
+package com.app.samuraisenso.DTOs.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

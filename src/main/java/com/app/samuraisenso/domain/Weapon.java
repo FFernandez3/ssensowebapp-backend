@@ -1,6 +1,6 @@
 package com.app.samuraisenso.domain;
 
-import com.app.samuraisenso.DTOs.WeaponRequestDTO;
+import com.app.samuraisenso.DTOs.request.WeaponRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,5 +1,6 @@
 package com.app.samuraisenso.domain;
 
+import com.app.samuraisenso.DTOs.AbilityRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
@@ -22,5 +23,11 @@ public class Ability implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false )
     private AbilityType type;
+
+    public Ability(AbilityRequestDTO requestDTO){
+        this.name=requestDTO.getName();
+        this.description=requestDTO.getDescription();
+        this.type=requestDTO.getType();
+    }
 
 }

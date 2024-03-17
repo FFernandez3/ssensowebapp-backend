@@ -1,8 +1,11 @@
 package com.app.samuraisenso.controllers;
 
+import com.app.samuraisenso.DTOs.AbilityRequestDTO;
+import com.app.samuraisenso.DTOs.AbilityResponseDTO;
 import com.app.samuraisenso.domain.Ability;
 import com.app.samuraisenso.domain.AbilityType;
 import com.app.samuraisenso.repositories.AbilityRepository;
+import com.app.samuraisenso.services.AbilityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,26 +17,19 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/api/ability")
 public class AbilityController {
-    private final AbilityRepository repositorio;
+    private final AbilityService service;
 
-    @GetMapping("/create")
-    public String createAbilities(){
-        try{
-            Ability ability1 = new Ability(1L,"Hiten Mitsurugi", "Tecnica de la escuela de Kenshin Himura", AbilityType.COMMON);
+    @PostMapping("/create")
+    public ResponseEntity<AbilityResponseDTO> createAbilities(AbilityRequestDTO request){
+           /* Ability ability1 = new Ability(1L,"Hiten Mitsurugi", "Tecnica de la escuela de Kenshin Himura", AbilityType.COMMON);
             Ability ability2 = new Ability(2L,"Kodachi Nito Ryuu", "Tecnica de la escuela de Aoshi Shinomori", AbilityType.ERUDITE);
             Ability ability3 = new Ability(3L,"Gatotsu", "Tecnica de la escuela de Saito Hajime", AbilityType.HIDDEN);
 
             repositorio.save(ability1);
             repositorio.save(ability2);
-            repositorio.save(ability3);
+            repositorio.save(ability3);*/
             //System.out.println("entro al create");
-            return ("habilidades creadas");
-
-        }
-        catch (Exception e){
-            return e.getMessage();
-        }
-
+            return ResponseEntity.ok(service.createAbilities(request));
 
     }
 

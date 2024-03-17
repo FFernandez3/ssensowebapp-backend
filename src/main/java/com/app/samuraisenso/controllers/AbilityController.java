@@ -1,7 +1,10 @@
 package com.app.samuraisenso.controllers;
 
 import com.app.samuraisenso.DTOs.AbilityRequestDTO;
+<<<<<<< HEAD
 import com.app.samuraisenso.DTOs.AbilityResponseDTO;
+=======
+>>>>>>> 809dd023f51afb212fb8ac7e780fae0ee9b8fc5c
 import com.app.samuraisenso.domain.Ability;
 import com.app.samuraisenso.domain.AbilityType;
 import com.app.samuraisenso.repositories.AbilityRepository;
@@ -49,12 +52,13 @@ public class AbilityController {
         }
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Ability> saveAbility (@RequestBody Ability ability){
-        if (ability.getId() != null) {
-            return ResponseEntity.badRequest().build();
-        }
-        repositorio.save(ability);
-        return ResponseEntity.ok(ability);
+    @PostMapping
+    public ResponseEntity<Ability> saveAbility (@RequestBody AbilityRequestDTO abilityDto){
+        //if (ability.getId() != null) {
+        //    return ResponseEntity.badRequest().build();
+        //}
+        Ability abilityEntity = new Ability(abilityDto);
+        repositorio.save(abilityEntity);
+        return ResponseEntity.ok(abilityEntity);
     }
 }

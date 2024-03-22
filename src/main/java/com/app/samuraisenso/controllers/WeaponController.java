@@ -16,8 +16,8 @@ public class WeaponController {
     private final WeaponService weaponService;
 
     @PostMapping("")
-    public WeaponResponseDTO save(@RequestBody WeaponRequestDTO requestDTO) throws Exception{
-        return this.weaponService.save(requestDTO);
+    public ResponseEntity<WeaponResponseDTO> save(@RequestBody WeaponRequestDTO requestDTO) throws Exception{
+        return ResponseEntity.status(201).body(this.weaponService.save(requestDTO));
     }
 
     @GetMapping("")

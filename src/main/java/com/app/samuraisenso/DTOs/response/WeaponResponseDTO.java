@@ -1,5 +1,6 @@
 package com.app.samuraisenso.DTOs.response;
 
+import com.app.samuraisenso.domain.Weapon;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,12 @@ public class WeaponResponseDTO {
     private double price;
 
     private String description;
+
+    public WeaponResponseDTO(Weapon entity){
+        this.id= entity.getId();
+        this.name= entity.getName();
+        this.description= entity.getDescription();
+        this.is_personalized= entity.is_personalized();
+        this.price=entity.getPrice();
+    }
 }

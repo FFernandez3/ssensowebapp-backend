@@ -1,5 +1,6 @@
 package com.app.samuraisenso.domain;
 
+import com.app.samuraisenso.DTOs.request.WeaponRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,4 +22,11 @@ public class Weapon implements Serializable {
     private double price;
     @Column(nullable = false)
     private String description;
+
+    public Weapon(WeaponRequestDTO requestDTO){
+        this.name=requestDTO.getName();
+        this.is_personalized=requestDTO.is_personalized();
+        this.price=requestDTO.getPrice();
+        this.description=requestDTO.getDescription();
+    }
 }

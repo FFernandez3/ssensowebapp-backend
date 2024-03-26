@@ -1,10 +1,7 @@
 package com.app.samuraisenso.controllers;
 
 import com.app.samuraisenso.DTOs.AbilityRequestDTO;
-<<<<<<< HEAD
 import com.app.samuraisenso.DTOs.AbilityResponseDTO;
-=======
->>>>>>> 809dd023f51afb212fb8ac7e780fae0ee9b8fc5c
 import com.app.samuraisenso.domain.Ability;
 import com.app.samuraisenso.domain.AbilityType;
 import com.app.samuraisenso.repositories.AbilityRepository;
@@ -36,21 +33,21 @@ public class AbilityController {
 
     }
 
-    @GetMapping("/getAll")
-    public List<Ability> getAbilities (){
-        return repositorio.findAll();
-    }
+//    @GetMapping("/getAll")
+//    public List<Ability> getAbilities (){
+//        return repositorio.findAll();
+//    }
 
-    @GetMapping("/getBy/{id}")
-    public ResponseEntity<Ability> getAbilityById(@PathVariable Long id){
-        Optional<Ability> opt = repositorio.findById(id);
-
-        if (opt.isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        } else {
-            return ResponseEntity.ok(opt.get());
-        }
-    }
+//    @GetMapping("/getBy/{id}")
+//    public ResponseEntity<Ability> getAbilityById(@PathVariable Long id){
+//        Optional<Ability> opt = repositorio.findById(id);
+//
+//        if (opt.isEmpty()) {
+//            return ResponseEntity.badRequest().build();
+//        } else {
+//            return ResponseEntity.ok(opt.get());
+//        }
+//    }
 
     @PostMapping
     public ResponseEntity<Ability> saveAbility (@RequestBody AbilityRequestDTO abilityDto){
@@ -58,7 +55,7 @@ public class AbilityController {
         //    return ResponseEntity.badRequest().build();
         //}
         Ability abilityEntity = new Ability(abilityDto);
-        repositorio.save(abilityEntity);
+//        repositorio.save(abilityEntity);
         return ResponseEntity.ok(abilityEntity);
     }
 }

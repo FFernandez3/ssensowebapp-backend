@@ -24,17 +24,10 @@ public class Ability implements Serializable {
     @Column(nullable = false )
     private AbilityType type;
 
-<<<<<<< HEAD
-    public Ability(AbilityRequestDTO requestDTO){
-        this.name=requestDTO.getName();
-        this.description=requestDTO.getDescription();
-        this.type=requestDTO.getType();
-=======
-    public Ability(AbilityRequestDTO abDto){
-        this.setName(abDto.getName());
-        this.setType(abDto.getType());
-        this.setDescription(abDto.getDescription());
->>>>>>> 809dd023f51afb212fb8ac7e780fae0ee9b8fc5c
+    public Ability(AbilityRequestDTO requestDTO) {
+        this.name = requestDTO.getName();
+        this.description = requestDTO.getDescription();
+        this.type = requestDTO.getType();
     }
 
 }
